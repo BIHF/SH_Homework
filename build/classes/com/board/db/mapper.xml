@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+	<select id="selectList" resultType="boardVo">
+		select no, content, time 
+		from board
+	</select>	
+	
+	<select id="selectOne" resultType="boardVo" parameterType="int">
+		select no, content, time from board where no = #{no}
+	</select>
+	<insert id="insert">
+		insert into board(content, time)
+		values(#{content}, now())
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from board
+		where no = #{no}
+	</delete>
+	<update id="update" parameterType="boardVo">
+		update board
+		set content = #{content}
+		where no = #{no}
+	</update>
+</mapper>
+
